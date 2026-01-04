@@ -1,0 +1,6 @@
+
+The CFPB complaint dataset contains over 5 million records, with key fields like 'Product', 'Consumer complaint narrative', and 'Issue'. Initial EDA revealed significant missing values in narratives (~70% empty), which we addressed by filtering them out. Product distribution is skewed, with Credit Cards and Loans dominating complaints.
+
+Narrative lengths vary widely (mean ~200 words, max >1,000), suggesting chunking will be crucial for RAG. After filtering to the 5 products (Credit Cards, Personal Loans, Savings Accounts, Money Transfers), we retained ~150,000 high-quality complaints. Text cleaning normalized the narratives, removing noise for better embeddings.
+
+This preprocessing ensures a focused, clean dataset for downstream tasks, highlighting fraud patterns like billing disputes in Credit Cards and transfer delays in Money Transfers.
