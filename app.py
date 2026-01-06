@@ -73,7 +73,7 @@ with gr.Blocks(theme=gr.themes.Soft()) as demo:
             )
             with gr.Row():
                 submit_btn = gr.Button("Ask", variant="primary")
-                clear_btn = gr.ClearButton([question_input, answer_output, sources_output])
+                clear_btn = gr.Button("Clear")
         
     with gr.Row():
         with gr.Column():
@@ -105,6 +105,16 @@ with gr.Blocks(theme=gr.themes.Soft()) as demo:
         fn=get_answer,
         inputs=question_input,
         outputs=[answer_output, sources_output]
+    )
+    
+    # Clear button logic
+    def clear_fields():
+        return "", "", ""
+        
+    clear_btn.click(
+        fn=clear_fields,
+        inputs=None,
+        outputs=[question_input, answer_output, sources_output]
     )
 
 if __name__ == "__main__":
