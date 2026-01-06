@@ -71,7 +71,9 @@ with gr.Blocks(theme=gr.themes.Soft()) as demo:
                 label="Your Question", 
                 placeholder="e.g., Why do customers complain about wire transfers?"
             )
-            submit_btn = gr.Button("Ask", variant="primary")
+            with gr.Row():
+                submit_btn = gr.Button("Ask", variant="primary")
+                clear_btn = gr.ClearButton([question_input, answer_output, sources_output])
         
     with gr.Row():
         with gr.Column():
@@ -80,6 +82,18 @@ with gr.Blocks(theme=gr.themes.Soft()) as demo:
     with gr.Row():
         with gr.Accordion("Retrieved Sources", open=False):
             sources_output = gr.Markdown()
+            
+    # Examples
+    gr.Examples(
+        examples=[
+            "What are the common fraud issues with Credit Cards?",
+            "Why do customers complain about student loans?",
+            "How do customers describe problems with money transfers?",
+            "Are there complaints about account closures?"
+        ],
+        inputs=question_input,
+        label="Try these examples:"
+    )
 
     submit_btn.click(
         fn=get_answer,
